@@ -1,0 +1,21 @@
+{% from 'pages/user/components/_userForm.html' import render_field %}
+<!-- extends  -->
+{% extends 'base.html' %}
+
+<!-- content block  -->
+{% block content %}
+<div>
+  <h2>Hello User, Going To Create New Account Into System</h2>
+  <p>Register Page</p>
+  <form method="POST">
+    {{register_form.csrf_token }}
+    <!-- username -->
+    {{render_field(register_form.email)}}
+    {{render_field(register_form.username)}}
+    {{render_field(register_form.password)}}
+    {{render_field(register_form.confirm_password)}}
+
+    <button type="submit">create account</button>
+  </form>
+</div>
+{% endblock %}
