@@ -4,5 +4,13 @@
 <div>
   <h2>Hello User</h2>
   <p>User Page</p>
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for message
+  in messages %}
+  <p style="color: red">{{message}}</p>
+  {% endfor %}
+  <!-- endfor  -->
+  {% endif %}
+  <!-- endif -->
+  {% endwith %}
 </div>
 {% endblock %}

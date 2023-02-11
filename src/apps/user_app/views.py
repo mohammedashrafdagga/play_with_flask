@@ -1,8 +1,8 @@
-from flask import render_template, Blueprint
+from flask import (render_template, Blueprint, redirect, flash, abort)
 from .forms import LoginForm, RegisterUser
 
 
-user_app = Blueprint('user_app', __name__, url_prefix='/user')
+user_app = Blueprint('user_app', __name__, url_prefix='/users')
 
 
 @user_app.route('/')
@@ -16,7 +16,13 @@ def login_page():
     if login_form.validate_on_submit():
         username = login_form.username.data.lower()
         password = login_form.password.data
-        return  f"<h2>user name is {username}, and the password is {password}</h2>"
+        # redirect to another route for user/
+        if password in username:
+            abort(401)
+        else:
+            flash(message='Successful Login')
+            return redirect(location='/users')
+        # return  f"<h2>user name is {username}, and the password is {password}</h2>"
     return render_template('pages/user/login_page.html', login_form=login_form)
 
 
