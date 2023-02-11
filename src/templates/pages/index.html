@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+<!-- content block  -->
+{% block content %}
+<div>
+  <h2>Hello User</h2>
+  {% if posts %}
+  <ul>
+    {% for post in posts%}
+    <li>
+      <a href="#">{{post}}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+{% endblock%}
